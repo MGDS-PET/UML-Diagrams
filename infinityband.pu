@@ -1,0 +1,17 @@
+@startuml
+
+skinparam monochrome true
+
+(*) --> [First boot] "First Boot"
+If "slfjojwof"
+-->[Yes] "Press button"
+--> "accrue activity"
+else
+--> "lights off"
+Endif
+
+
+
+--> Thingy
+
+@enduml
