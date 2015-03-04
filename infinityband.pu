@@ -2,16 +2,27 @@
 
 skinparam monochrome true
 
-(*) --> [First boot] "First Boot"
+
+partition Setup {
+    (*) --> "Search for pair"
+}
+
+partition Activity {
+"Search for pair" --> Loop
+
 If "slfjojwof"
 -->[Yes] "Press button"
 --> "accrue activity"
+--> === S1 ===
 else
 --> "lights off"
 Endif
 
+--> === S1 ===
+}
 
-
---> Thingy
+partition Sync {
+=== S1 === --> "Time Tremor"
+}
 
 @enduml
