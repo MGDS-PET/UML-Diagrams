@@ -4,11 +4,17 @@ skinparam monochrome true
 
 
 partition Setup {
-    (*) --> "Search for pair"
+(*) --> "Search for pair"
+--> if "" then
+--> [Found] === A1 ===
+else
+-->[Not Found] "Search for pair"
+endif
+
 }
 
 partition Activity {
-"Search for pair" --> Loop
+=== A1 === --> Loop
 
 If "slfjojwof"
 -->[Yes] "Press button"
@@ -19,10 +25,21 @@ else
 Endif
 
 --> === S1 ===
+
+Loop if "" then 
+--> "Heart Rate"
+else
+--> "No Heart Rate"
+endif
+--> === S1 ===
+
+
+
 }
 
 partition Sync {
 === S1 === --> "Time Tremor"
+--> Loop
 }
 
 @enduml
