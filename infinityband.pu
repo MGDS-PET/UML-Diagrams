@@ -1,51 +1,28 @@
 @startuml
-
 skinparam monochrome true
+[*] --> Setup
 
+state Setup {
+[*] --> Search
+}
 
-partition Setup {
-(*) --> "Search for pair"
---> if "" then
---> [Found] === A1 ===
-else
--->[Not Found] "Search for pair"
-endif
+state Loop{
+state "Press Button" as button
+state Activity
+[*] --> button
 
 }
 
-partition Activity {
-=== A1 === --> Loop
-
--->[Yes] "Press button"
---> "Lights On"
-"Lights On"-->[Level 1] "Show Blue Level"
-"Lights On"-->[Level 2] "Show Green Level"
-"Lights On"-->[Level 3] "Show Red Level"
--->[5 Seconds] "Lights Off"
-"Show Blue Level" -->[5 Seconds] "Lights Off"
-"Show Green Level" -->[5 Seconds] "Lights Off"
---> === S1 ===
-
-Loop --> "Moving"
-Loop --> "Heart Rate > Zone 2" 
-->x "Moving"
-
---> === S1 ===
 
 
+state Sync {
 
 }
 
-partition Sync {
-=== S1 === --> "Time Tremor"
 
---> if "" then 
---> "Treasure Released"
-else
---> "No Treasure" 
-endif
+Setup --> Loop
+Loop --> Sync
 
--->[Time Energy Reset] Loop
-}
+
 
 @enduml
