@@ -16,21 +16,20 @@ endif
 partition Activity {
 === A1 === --> Loop
 
-If "slfjojwof"
 -->[Yes] "Press button"
---> "accrue activity"
+--> "Lights On"
+"Lights On"-->[Level 1] "Show Blue Level"
+"Lights On"-->[Level 2] "Show Green Level"
+"Lights On"-->[Level 3] "Show Red Level"
+-->[5 Seconds] "Lights Off"
+"Show Blue Level" -->[5 Seconds] "Lights Off"
+"Show Green Level" -->[5 Seconds] "Lights Off"
 --> === S1 ===
-else
---> "lights off"
-Endif
 
---> === S1 ===
+Loop --> "Moving"
+Loop --> "Heart Rate > Zone 2" 
+->x "Moving"
 
-Loop if "" then 
---> "Heart Rate"
-else
---> "No Heart Rate"
-endif
 --> === S1 ===
 
 
@@ -39,7 +38,14 @@ endif
 
 partition Sync {
 === S1 === --> "Time Tremor"
---> Loop
+
+--> if "" then 
+--> "Treasure Released"
+else
+--> "No Treasure" 
+endif
+
+-->[Time Energy Reset] Loop
 }
 
 @enduml
